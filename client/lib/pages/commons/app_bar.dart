@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const double elevation = 8;
 
-class MakerAppBar extends StatelessWidget {
+class MakerAppBar extends StatelessWidget implements PreferredSizeWidget{
   const MakerAppBar({
     super.key,
     required this.title
@@ -18,7 +18,9 @@ class MakerAppBar extends StatelessWidget {
       ),
       elevation: elevation,
       backgroundColor: Colors.green,
-
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

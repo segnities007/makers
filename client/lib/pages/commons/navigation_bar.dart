@@ -17,7 +17,7 @@ class MakerNavigationBar extends StatelessWidget {
   @override
   Widget build(context) {
     return NavigationBar(
-      shadowColor: Colors.green,
+      backgroundColor: Colors.green,
       onDestinationSelected: changeIndex,
       selectedIndex: index,
       destinations: [

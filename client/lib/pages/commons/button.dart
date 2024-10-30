@@ -6,24 +6,30 @@ class MakerButton extends StatelessWidget {
     required this.handler,
     required this.label,
     this.elevation = 8,
-    this.minSize = 100,
+    this.size = 100,
   });
 
   final void Function() handler;
   final String label;
   final double elevation;
-  final double minSize;
+  final double size;
 
   @override
-  Widget build(context) {
-    return ElevatedButton(
-      onPressed: handler,
-      style: ElevatedButton.styleFrom(
-        elevation: elevation,
-        backgroundColor: Colors.green,
-        minimumSize: Size(minSize, minSize*0.3),
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      height: size * 0.3,
+      child: ElevatedButton(
+        onPressed: handler,
+        style: ElevatedButton.styleFrom(
+          elevation: elevation,
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+        child: Text(label, style: const TextStyle(color: Colors.white)),
       ),
-      child: Text(label),
     );
   }
 }
