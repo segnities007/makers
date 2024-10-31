@@ -33,7 +33,7 @@
 |---------------|------------------|--------------------------|
 | id            | int              | グループの一意識別子      |
 | name          | String           | グループ名               |
-| userIDs       | List<id>         | グループに所属するユーザーのリスト |
+| userIDs       | List<int>        | グループに所属するユーザーのリスト |
 | messageIDs    | List<int>        | グループ内のメッセージのリスト |
 
 ## Image クラス
@@ -64,12 +64,12 @@
 | secondID           | int              | 受信者または2人目のユーザーのID  |
 | messageIDs         | List<int>        | メッセージのリスト        |
 
-## HashTag クラス
+## Tag クラス
 
 //すべて必須
 | プロパティ     | 型               | 説明                     |
 |---------------|------------------|--------------------------|
-| id            | int              | ハッシュタグの一意識別子   |
-| name          | String           | ハッシュタグの名前        |
-| userIDs       | List<int>        | ハッシュタグの名前        |
-| groupIDs      | List<int>        | このハッシュタグに関連するグループのIDリスト |
+| id            | int              | タグの一意識別子   |
+| name          | String           | タグの名前        |
+| userIDs       | List<int>        | タグの名前        |
+| groupIDs      | List<int>        | タグに関連するグループのIDリスト |
