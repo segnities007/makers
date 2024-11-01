@@ -28,7 +28,7 @@ class UserInfo {
   final String name;
   final int birthday;
   final String github;
-  final String intro;
+  final String description;
   final Image? image;
   final List<int> tags;
   final List<int> followIDs;
@@ -40,7 +40,7 @@ class UserInfo {
     this.name = "",
     this.birthday = -1,
     this.github = "",
-    this.intro = "",
+    this.description = "",
     this.image,
     this.tags = const [],
     this.followIDs = const [],
@@ -54,7 +54,7 @@ class UserInfo {
       name: json["name"],
       birthday: json["birthday"],
       github: json["github"],
-      intro: json["intro"],
+      description: json["description"],
       image: json["image"],
       tags: json["tags"],
       followIDs: json["followIDs"],
@@ -150,15 +150,15 @@ class DirectMessage {
   }
 }
 
-class Tag {
+class Tags {
   final int id;
-  final String name;
+  final int tagID;
   final List<int> userIDs;
   final List<int> groupIDs;
 
-  Tag({
+  Tags({
     required this.id,
-    required this.name,
+    required this.tagID,
     required this.userIDs,
     required this.groupIDs,
   });
