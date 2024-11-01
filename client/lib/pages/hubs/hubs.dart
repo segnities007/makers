@@ -3,11 +3,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../commons/app_bar.dart';
 import '../commons/navigation_bar.dart';
-import 'home.dart';
-import 'notification.dart' as notify;
-import 'make.dart';
-import 'search.dart';
-import 'profile.dart';
+import './home/home.dart';
+import './notification/notification.dart' as notify;
+import './make/make.dart';
+import './search/search.dart';
+import './profile/profile.dart';
 import '../commons/drawer.dart';
 
 ////
@@ -20,9 +20,9 @@ const icons = [
   Icons.person,
 ];
 const labels = ["Home", "Search", "Make", "Notify", "Profile"];
-const hubs = [Home(), Search(), Make(), notify.Notification(), Profile()];
+final hubs = [Home(), Search(), const Make(), const notify.Notification(), const Profile()];
 
-const data = (
+final data = (
   labels: labels,
   icons: icons,
   hubs: hubs,

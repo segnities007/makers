@@ -57,7 +57,7 @@ class MakerListTile extends StatelessWidget {
             const SizedBox(width: 10),
             Icon(icon, size: 30),
             const SizedBox(width: 10),
-            Text(label + index.toString(), style: const TextStyle(fontSize: 20)),
+            Text(label, style: const TextStyle(fontSize: 20)),
         ])
       ),
         onTap: () {

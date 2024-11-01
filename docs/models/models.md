@@ -6,6 +6,7 @@
 | プロパティ          | 型         | 説明                     |
 |-------------------|------------|--------------------------|
 | id                | int        | ユーザーの一意識別子      |
+| userInfoID        |int         | ユーザーの一意識別子      |
 | email             | String     | ユーザーのメールアドレス   |
 | password          | String     | ユーザーのパスワード      |
 
@@ -19,9 +20,8 @@
 | name              | String     | ユーザーの名前           |
 | birthday          | int?       | ユーザーの誕生日（yyyymmdd形式の8桁） |
 | github            | String     | ユーザーのGitHubプロフィールURL |
-| selfIntro         | String     | ユーザーの自己紹介        |
+| description       | String     | ユーザーの自己紹介        |
 | image             | Image?     | ユーザーのアイコン        |
-| preference        | String     | ユーザーの興味のある技術   |
 | followIDs         | List<int>  | ユーザーがフォローしているuserid     |
 | groupIDs          | List<int>  | ユーザーが加入中のグループid     |
 | DirectMessageIDs  | List<int>  | ユーザーがもつDMのid    |
@@ -35,6 +35,7 @@
 |---------------|------------------|--------------------------|
 | id            | int              | グループの一意識別子      |
 | name          | String           | グループ名               |
+| description   | String           | グループの詳細           |
 | userIDs       | List<int>        | グループに所属するユーザーのリスト |
 | messageIDs    | List<int>        | グループ内のメッセージのリスト |
 | tag           | List<int>        | グループのtag     |
@@ -77,7 +78,7 @@
 | プロパティ      | 型               | 説明                     |
 |---------------|------------------|--------------------------|
 | id            | int              | タグの一意識別子         |
-| tag           | Tag              | タグ                   |
+| tagID         | id               | タグ                   |
 | userIDs       | List<int>        | タグの名前              |
 | groupIDs      | List<int>        | タグに関連するグループのIDリスト |
 
