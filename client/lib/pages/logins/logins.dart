@@ -33,6 +33,7 @@ class Logins extends HookWidget {
     }
 
     return Scaffold(
+      backgroundColor: Colors.green[50],
         appBar: const MakerAppBar(
           title: "Login",
         ),
