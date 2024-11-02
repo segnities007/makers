@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const double elevation = 8;
+const double elevation = 0;
 
 class MakerAppBar extends StatelessWidget implements PreferredSizeWidget{
   const MakerAppBar({
