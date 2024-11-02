@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-const double padding = 16;
 
 
-class MakerInportForm extends HookWidget {
-  const MakerInportForm({
+class MakerInputForm extends HookWidget {
+  const MakerInputForm({
     super.key,
     required this.labels,
     required this.validators,
     required this.controllers,
     this.borderRadius = 8,
     this.maxWidth = 1000,
-    this.padding = 16,
+    this.padding = 32,
   });
 
   final List<String> labels;
@@ -41,6 +40,8 @@ class MakerInportForm extends HookWidget {
                   validator: validators[i],
                   controller: controllers[i],
                   decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
                     label: Text(labels[i]),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(borderRadius),

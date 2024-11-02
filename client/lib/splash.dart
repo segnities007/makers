@@ -16,13 +16,8 @@ class Splash extends HookWidget {
       return null;
     }, []);
 
-    return Center(
-      child: MakerButton(
-        handler: () {
-          context.go("/logins");
-        },
-        label: "go login",
-      ),
+    return const Center(
+      child: Text("hello world")
     );
   }
 }

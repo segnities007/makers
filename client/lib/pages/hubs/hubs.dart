@@ -20,7 +20,7 @@ const icons = [
   Icons.person,
 ];
 const labels = ["Home", "Search", "Make", "Notify", "Profile"];
-final hubs = [Home(), Search(), const Make(), const notify.Notification(), const Profile()];
+final hubs = [Home(), Search(), Make(), const notify.Notification(), const Profile()];
 
 final data = (
   labels: labels,
@@ -43,6 +43,7 @@ class Hubs extends HookWidget {
     }
 
     return Scaffold(
+      backgroundColor: Colors.green[50],
       appBar: const MakerAppBar(title: "Makers"),
       drawer: MakerDrawer(
         labels: data.labels,

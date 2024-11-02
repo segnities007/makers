@@ -5,7 +5,7 @@ import '../../commons/card.dart';
 import '../../commons/input_form.dart';
 import '../../commons/button.dart';
 
-const double padding = 32;
+const double padding = 8;
 const double radius = 16;
 
 class Home extends StatelessWidget {
@@ -29,7 +29,8 @@ class Home extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: MakerInportForm(
+                  child: MakerInputForm(
+                    padding: 16,
                     maxWidth: double.infinity,
                     labels: labels,
                     validators: validators,
@@ -59,15 +60,11 @@ class GroupList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.green[50],
-        borderRadius: BorderRadius.circular(radius),
-      ),
       child: ListView.builder(
         itemCount: 100,
-        itemBuilder: (context, index) => MakerCard(index: index),
+        itemBuilder: (context, index) => const MakerCard(label: "title",description: "description",),
       ),
     );
   }

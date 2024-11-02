@@ -21,8 +21,8 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Column(children: [
-        MakerInportForm(
-            labels: labels, validators: validators, controllers: controllers),
+        MakerInputForm(
+            padding: 64, labels: labels, validators: validators, controllers: controllers),
       MakerButton(
           label: "create",
           handler: () {
