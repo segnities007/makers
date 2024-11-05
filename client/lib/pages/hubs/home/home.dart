@@ -5,12 +5,12 @@ import '../../commons/card.dart';
 import '../../commons/input_form.dart';
 import '../../commons/button.dart';
 
-const double padding = 8;
-const double radius = 16;
-
 class Home extends StatelessWidget {
   Home({super.key});
 
+
+  final double padding = 8;
+  final double radius = 16;
   final List<String> labels = ["Search"];
   final List<String? Function(String?)> validators = [
     emptyValidator,
@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(padding, 8, padding, padding),
+        padding: EdgeInsets.fromLTRB(padding, 8, padding, padding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
