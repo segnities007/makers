@@ -20,7 +20,7 @@ const icons = [
   Icons.person,
 ];
 const labels = ["Home", "Search", "Make", "Notify", "Profile"];
-final hubs = [Home(), Search(), Make(), const notify.Notification(), const Profile()];
+final hubs = [Home(), Search(), Make(), const notify.Notification(), Profile()];
 
 final data = (
   labels: labels,

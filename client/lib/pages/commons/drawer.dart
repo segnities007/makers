@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-////
-
-const double padding = 4;
-const drawerImage = "https://avatars.githubusercontent.com/u/174174755?v=4";
-final url = Uri.parse("https://github.com/segnities007");
-const double imageSize = 128;
-
-////
-
 class MakerDrawer extends StatelessWidget {
-  const MakerDrawer({
+  MakerDrawer({
     super.key,
     required this.labels,
     required this.icons,
     required this.changeIndex,
     this.child,
   });
+
+  final double padding = 4;
+  final drawerImage = "https://avatars.githubusercontent.com/u/174174755?v=4";
+  final url = Uri.parse("https://github.com/segnities007");
+  final double imageSize = 128;
 
   final List<String> labels;
   final List<IconData> icons;

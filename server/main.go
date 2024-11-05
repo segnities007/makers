@@ -11,7 +11,6 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	// "server/logics/db"
   "server/models"
 )
 
@@ -27,11 +26,11 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
+	dbHost := os.Getenv("DB_HOST")
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
-	dbHost := os.Getenv("DB_HOST")
-	dbPort := os.Getenv("DB_PORT")
 	dbName := os.Getenv("DB_NAME")
+	dbPort := os.Getenv("DB_PORT")
 	dbCharset := os.Getenv("DB_CHARSET")
 	dbParseTime := os.Getenv("DB_PARSE_TIME")
 	dbLoc := os.Getenv("DB_LOC")
@@ -61,7 +60,6 @@ func main() {
 		&models.Image{},
 	  &models.Message{},
 		&models.DirectMessage{},
-		&models.Tags{},
 		&models.Tag{},
 	)
 

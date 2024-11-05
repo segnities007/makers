@@ -38,7 +38,8 @@
 | description   | String           | グループの詳細           |
 | userIDs       | List<int>        | グループに所属するユーザーのリスト |
 | messageIDs    | List<int>        | グループ内のメッセージのリスト |
-| tag           | List<int>        | グループのtag     |
+| tag           | List<int>        | グループのtag            |
+
 
 
 ## Image クラス
