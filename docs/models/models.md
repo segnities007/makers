@@ -21,7 +21,7 @@
 | birthday          | int?       | ユーザーの誕生日（yyyymmdd形式の8桁） |
 | github            | String     | ユーザーのGitHubプロフィールURL |
 | description       | String     | ユーザーの自己紹介        |
-| image             | Image?     | ユーザーのアイコン        |
+| imageid           | int        | ユーザーのアイコン        |
 | followIDs         | List<int>  | ユーザーがフォローしているuserid     |
 | groupIDs          | List<int>  | ユーザーが加入中のグループid     |
 | DirectMessageIDs  | List<int>  | ユーザーがもつDMのid    |

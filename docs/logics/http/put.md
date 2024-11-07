@@ -17,12 +17,12 @@
 | name              | String     |
 | birthday          | int?       |
 | github            | String     |
-| selfIntro         | String     |
+| description       | String     |
 | image             | Image?     |
-| preference        | String     |
+| tags              | List<int>  |
 | followIDs         | List<int>  |
 | groupIDs          | List<int>  |
-| DirectMessageIDs  | List<int>  |
+| directMessageIDs  | List<int>  |
 
 ## /group
 
@@ -58,9 +58,10 @@
 | secondID           | int              |
 | messageIDs         | List<int>        |
 
-//クライアントは使用しない。
+
 
 ## /tags
+//多分これはいらない
 
 | プロパティ      | 型               |
 |---------------|------------------|

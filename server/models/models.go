@@ -1,74 +1,57 @@
 package models
 
 import (
-	"gorm.io/gorm"
 )
 
-// User はアプリケーションのユーザーを表します。
 type User struct {
-	gorm.Model
-	Email      string
-	Password   string
-	UserInfoID uint
-	UserInfo   UserInfo `gorm:"foreignKey:UserInfoID"`
+	ID uint `gorm:"primaryKey" json:"id"`
+	Email      string	`json:"email"`
+	Password   string	`json:"password"`
+	UserInfoID uint	`json:"userinfoid"`
 }
 
-// UserInfo はユーザーの詳細情報を表します。
 type UserInfo struct{
-	gorm.Model
-	Name        string
-	Birthday    string
-	Github      string
-	Description string
-	ImageID     uint     `gorm:"uniqueIndex"` // 外部キーとしてImageIDを追加
-	Image       *Image   `gorm:"foreignKey:ImageID"` // ポインタを使用して循環参照を防止
-	Follows     []*User  `gorm:"many2many:user_follows;"`
-	Groups      []*Group `gorm:"many2many:user_groups;"`
-	DirectMessages []*DirectMessage `gorm:"many2many:user_direct_messages;"`
-	Tags        []*Tag   `gorm:"many2many:user_tags;"`
+	ID uint `gorm:"primaryKey" json:"id"`
+	Name        string	`json:"name"`
+	Birthday    string	`json:"birthday"`
+	Github      string	`json:"github"`
+	Description string	`json:"description"`
+	ImageID     uint	`json:"imageid"`
+	FollowIDs     []uint	`json:"followids"`
+	GroupIDs      []uint	`json:"groupids"`
+	DirectMessageIDs []uint 	`json:"directmessageids"`
+	TagIDs        []uint	`json:"tagids"`
 }
 
-// Image はユーザーの画像を表します。
 type Image struct {
-	gorm.Model
-	UserID uint
-	Url    string
-	// UserInfo 参照を削除して循環参照を防止
+	ID uint `gorm:"primaryKey" json:"id"`
+	UserID uint	`json:"userid"`
+	Url    string	`json:"url"`
 }
 
-// Group はユーザーグループを表します。
 type Group struct {
-	gorm.Model
-	Name        string
-	Description string
-	Users       []*User `gorm:"many2many:user_groups;"`
-	Messages    []Message
-	Tags        []*Tag `gorm:"many2many:group_tags;"`
+	ID uint `gorm:"primaryKey" json:"id"`
+	Name        string	`json:"name"`
+	Description string	`json:"description"`
+	UserIDs       []uint	`json:"userids"`
+	MessageIDs    []uint	`json:"messageids"`
+	TagIDs        []uint	`json:"tagids"`
 }
 
-// Message はグループまたはダイレクトメッセージ内のメッセージを表します。
 type Message struct {
-	gorm.Model
-	UserID          uint
-	Message         string
-	GroupID         uint
-	Group           Group `gorm:"foreignKey:GroupID"`
-	DirectMessageID uint
-	DirectMessage   DirectMessage  `gorm:"foreignKey:DirectMessageID"`
+	ID uint `gorm:"primaryKey" json:"id"`
+	UserID          uint	`json:""`
+	Message         string	`json:""`
 }
 
-// DirectMessage はユーザー間のダイレクトメッセージを表します。
 type DirectMessage struct{
-	gorm.Model
-	FirstID  uint
-	SecondID uint
-	Messages []Message `gorm:"foreignKey:DirectMessageID"`
+	ID uint `gorm:"primaryKey" json:"id"`
+	FirstID  uint	`json:"firstid"`
+	SecondID uint	`json:"secondid"`
+	MessageIDs []uint	`json:"messageids"`
 }
 
-// Tag はユーザーやグループに関連付けられるタグを表します。
 type Tag struct{
-	gorm.Model
-	Name   string
-	Users  []*User `gorm:"many2many:user_tags;"`
-	Groups []*Group `gorm:"many2many:group_tags;"`
+	ID uint `gorm:"primaryKey" json:"id"`
+	Name   string	`json:"name"`
 }

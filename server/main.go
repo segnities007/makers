@@ -12,9 +12,10 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
   "server/models"
+  "server/logics/db"
 )
 
-var DB *gorm.DB
+
 
 func main() {
 	err := godotenv.Load()
@@ -47,13 +48,13 @@ func main() {
 	)
 
 	var dbErr error
-	DB, dbErr = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db.DB, dbErr = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if dbErr != nil {
 		log.Fatalf("Failed to connect to database: %v", dbErr)
 	}
 
-	DB.AutoMigrate(
+	db.DB.AutoMigrate(
 		&models.User{},
 		&models.UserInfo{},
 	  &models.Group{},
