@@ -7,7 +7,6 @@
 | email             | String     |
 | password          | String     |
 
-
 ## /userinfo
 
 | プロパティ          | 型         |
@@ -15,7 +14,7 @@
 | name              | String     |
 | birthday          | int?       |
 | github            | String     |
-| selfIntro         | String     |
+| description       | String     |
 | image             | Image?     |
 | preference        | String     |
 | followIDs         | List<int>  |
@@ -48,7 +47,7 @@
 
 | プロパティ           | 型               |
 |--------------------|------------------|
-| firsID             | int              |
+| firstID             | int              |
 | secondID           | int              |
 | messageIDs         | List<int>        |
 

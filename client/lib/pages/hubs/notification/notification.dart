@@ -33,7 +33,9 @@ class Notification extends StatelessWidget {
 class NotifyTile extends StatelessWidget {
   const NotifyTile({
     super.key,
-
+    required this.icon,
+    required this.title,
+    required this.description,
   });
 
   final IconData icon;
