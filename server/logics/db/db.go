@@ -9,7 +9,9 @@ import(
 
 var DB *gorm.DB
 
-func createUser(u *models.User) error {
+//////////////////////////////////////////////////////////////////////////////
+
+func CreateUser(u *models.User) error {
     r := DB.Create(&u)
 
     if r.Error != nil {
@@ -20,8 +22,8 @@ func createUser(u *models.User) error {
     return nil
 }
 
-func getUser(u *models.User)error{
-	r := DB.First(u, &u.ID)
+func GetUser(u *models.User, id int)error{
+	r := DB.First(u, id)
 
 	if r.Error != nil {
 		log.Printf("Error in getUser (server/logics/db/db.go): %v\n", r.Error)
@@ -31,7 +33,7 @@ func getUser(u *models.User)error{
 	return nil
 }
 
-func updateUser(u *models.User)error{
+func UpdateUser(u *models.User)error{
 	r := DB.Save(u)
 
 	if r.Error != nil {
@@ -42,7 +44,7 @@ func updateUser(u *models.User)error{
 	return nil
 }
 
-func deleteUser(u *models.User)error{
+func DeleteUser(u *models.User)error{
 	r := DB.Delete(u)
 
 	if r.Error != nil {
@@ -53,9 +55,9 @@ func deleteUser(u *models.User)error{
 	return nil
 }
 
-//
+//////////////////////////////////////////////////////////////////////////////
 
-func createGroup(g *models.Group)error{
+func CreateGroup(g *models.Group)error{
 	r := DB.Create(&g)
 
     if r.Error != nil {
@@ -66,9 +68,7 @@ func createGroup(g *models.Group)error{
     return nil
 }
 
-//
-
-func getGroup(g *models.Group)error{
+func GetGroup(g *models.Group)error{
 	r := DB.First(&g)
 
     if r.Error != nil {
@@ -79,7 +79,7 @@ func getGroup(g *models.Group)error{
     return nil
 }
 
-func updateGroup(g *models.Group)error{
+func UpdateGroup(g *models.Group)error{
 	r := DB.Save(&g)
 
     if r.Error != nil {
@@ -90,7 +90,7 @@ func updateGroup(g *models.Group)error{
     return nil
 }
 
-func deleteGroup(g *models.Group)error{
+func DeleteGroup(g *models.Group)error{
 	r := DB.Delete(&g)
 
     if r.Error != nil {
@@ -101,7 +101,9 @@ func deleteGroup(g *models.Group)error{
     return nil
 }
 
-func createUserInfo(ui *models.UserInfo)error{
+//////////////////////////////////////////////////////////////////////////////
+
+func CreateUserInfo(ui *models.UserInfo)error{
 	r := DB.Create(&ui)
 
     if r.Error != nil {
@@ -112,8 +114,8 @@ func createUserInfo(ui *models.UserInfo)error{
     return nil
 }
 
-func getUserInfo(ui *models.UserInfo)error{
-	r := DB.First(&ui)
+func GetUserInfo(ui *models.UserInfo, id int)error{
+	r := DB.First(&ui, id)
 
 	if r.Error != nil {
       log.Printf("Error in getUserInfo (server/logics/db/db.go): %v\n", r.Error)
@@ -123,7 +125,7 @@ func getUserInfo(ui *models.UserInfo)error{
     return nil
 }
 
-func updateUserInfo(ui *models.UserInfo)error{
+func UpdateUserInfo(ui *models.UserInfo)error{
 	r := DB.Save(&ui)
 
 	if r.Error != nil {
@@ -134,7 +136,7 @@ func updateUserInfo(ui *models.UserInfo)error{
     return nil
 }
 
-func deleteUserInfo(ui *models.UserInfo)error{
+func DeleteUserInfo(ui *models.UserInfo)error{
 	r := DB.Delete(&ui)
 
 	if r.Error != nil {
@@ -145,7 +147,9 @@ func deleteUserInfo(ui *models.UserInfo)error{
     return nil
 }
 
-func createImage(image *models.Image)error{
+//////////////////////////////////////////////////////////////////////////////
+
+func CreateImage(image *models.Image)error{
 	r := DB.Create(&image)
 
     if r.Error != nil {
@@ -156,7 +160,7 @@ func createImage(image *models.Image)error{
     return nil
 }
 
-func getImage(image *models.Image)error{
+func GetImage(image *models.Image)error{
 	r := DB.First(&image)
 
 	if r.Error != nil {
@@ -167,7 +171,7 @@ func getImage(image *models.Image)error{
     return nil
 }
 
-func updateImage(image *models.Image)error{
+func UpdateImage(image *models.Image)error{
 	r := DB.Save(&image)
 
 	if r.Error != nil {
@@ -178,7 +182,7 @@ func updateImage(image *models.Image)error{
     return nil
 }
 
-func deleteImage(image *models.Image)error{
+func DeleteImage(image *models.Image)error{
 	r := DB.Delete(&image)
 
 	if r.Error != nil {
@@ -189,7 +193,9 @@ func deleteImage(image *models.Image)error{
     return nil
 }
 
-func createMessage(m *models.Message)error{
+//////////////////////////////////////////////////////////////////////////////
+
+func CreateMessage(m *models.Message)error{
 	r := DB.Create(&m)
 
     if r.Error != nil {
@@ -200,7 +206,7 @@ func createMessage(m *models.Message)error{
     return nil
 }
 
-func getMessage(m *models.Message)error{
+func GetMessage(m *models.Message)error{
 	r := DB.First(&m)
 
 	if r.Error != nil {
@@ -211,7 +217,7 @@ func getMessage(m *models.Message)error{
     return nil
 }
 
-func updateMessage(m *models.Message)error{
+func UpdateMessage(m *models.Message)error{
 	r := DB.Save(&m)
 
 	if r.Error != nil {
@@ -222,7 +228,7 @@ func updateMessage(m *models.Message)error{
     return nil
 }
 
-func deleteMessage(m *models.Message)error{
+func DeleteMessage(m *models.Message)error{
 	r := DB.Delete(&m)
 
 	if r.Error != nil {
@@ -232,7 +238,9 @@ func deleteMessage(m *models.Message)error{
     return nil
 }
 
-func createDM(dm *models.DirectMessage)error{
+//////////////////////////////////////////////////////////////////////////////
+
+func CreateDM(dm *models.DirectMessage)error{
 	r := DB.Create(&dm)
 
     if r.Error != nil {
@@ -243,7 +251,7 @@ func createDM(dm *models.DirectMessage)error{
   return nil
 }
 
-func getDM(dm *models.DirectMessage)error{
+func GetDM(dm *models.DirectMessage)error{
 	r := DB.First(&dm)
 
 	if r.Error != nil {
@@ -254,7 +262,7 @@ func getDM(dm *models.DirectMessage)error{
   return nil
 }
 
-func updateDM(dm *models.DirectMessage)error{
+func UpdateDM(dm *models.DirectMessage)error{
 	r := DB.Save(&dm)
 
 	if r.Error != nil {
@@ -265,7 +273,7 @@ func updateDM(dm *models.DirectMessage)error{
   return nil
 }
 
-func deleteDM(dm *models.DirectMessage)error{
+func DeleteDM(dm *models.DirectMessage)error{
 	r := DB.Delete(&dm)
 
 	if r.Error != nil {
@@ -276,7 +284,9 @@ func deleteDM(dm *models.DirectMessage)error{
   return nil
 }
 
-func createTag(t *models.Tag)error{
+//////////////////////////////////////////////////////////////////////////////
+
+func CreateTag(t *models.Tag)error{
 	r := DB.Create(&t)
 
     if r.Error != nil {
@@ -287,7 +297,7 @@ func createTag(t *models.Tag)error{
   return nil
 }
 
-func getTag(t *models.Tag)error{
+func GetTag(t *models.Tag)error{
 	r := DB.First(&t)
 
 	if r.Error != nil {
@@ -298,7 +308,7 @@ func getTag(t *models.Tag)error{
   return nil
 }
 
-func updateTag(t *models.Tag)error{
+func UpdateTag(t *models.Tag)error{
 	r := DB.Save(&t)
 
 	if r.Error != nil {
@@ -309,7 +319,7 @@ func updateTag(t *models.Tag)error{
   return nil
 }
 
-func deleteTag(t *models.Tag)error{
+func DeleteTag(t *models.Tag)error{
 	r := DB.Delete(&t)
 
 	if r.Error != nil {

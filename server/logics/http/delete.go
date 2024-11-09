@@ -13,29 +13,29 @@ func DELETEs(e *echo.Echo){
 }
 
 func deleteUser(c echo.Context)error{
-
+	return nil
 }
 
 func deleteUserInfo(c echo.Context)error{
-
+	return nil
 }
 
 func deleteGroup(c echo.Context)error{
-
+	return nil
 }
 
 func deleteImage(c echo.Context)error{
-
+	return nil
 }
 
 func deleteMessage(c echo.Context)error{
-
+	return nil
 }
 
 func deleteDirectMessage(c echo.Context)error{
-
+	return nil
 }
 
 func deleteTag(c echo.Context)error{
-
+	return nil
 }
