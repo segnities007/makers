@@ -1,25 +1,17 @@
-# ビルドステージ
-FROM golang:1.23.2 AS builder
+FROM golang
 
 WORKDIR /app
 
-# Go Modulesを有効にし、依存関係をキャッシュ
 COPY go.mod go.sum ./
+
 RUN go mod download
 
-# ソースコードをコンテナにコピー
-COPY . .
+COPY logics logics
+COPY models models
 
-# Goアプリケーションをビルド
-RUN go build -o main .
+COPY . ./
+RUN CGO_ENABLED=0 GOOS=linux go build -o /makers
 
-# 実行ステージ
-FROM golang:1.23.2
+EXPOSE 8080
 
-WORKDIR /app
-
-# ビルドした実行ファイルをコピー
-COPY --from=builder /app/main .
-
-# 実行コマンドを設定
-CMD ["./main"]
+CMD ["/makers"]

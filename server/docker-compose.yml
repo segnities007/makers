@@ -3,7 +3,7 @@ services:
     build:
       context: .
     ports:
-      - "8080:8080" # 必要に応じて変更
+      - "8080:8080"
     env_file:
       - .env
     environment:
@@ -13,10 +13,8 @@ services:
       - DB_NAME=your_db
       - USE_SSL=false
     depends_on:
-      - db
-    # 開発環境向けのボリュームマッピング（必要に応じて）
-    # volumes:
-    #   - .:/app
+      db:
+        condition: service_healthy
 
   db:
     image: mariadb:10.5
@@ -26,9 +24,14 @@ services:
       MYSQL_USER: your_user
       MYSQL_PASSWORD: your_password
     ports:
-      - "3306:3306" # 必要に応じて変更
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db_data:
