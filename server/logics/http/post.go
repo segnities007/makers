@@ -64,17 +64,27 @@ func createUserInfo(c echo.Context)error{ //TODO modify line value
 		Description: description,
 	}
 
-	db.CreateUserInfo(&ui)
+	if err := db.CreateUserInfo(&ui); err != nil{
+		return c.JSON(http.StatusInternalServerError, err)
+	}
 
 	err, imageID := createImage(c, ui.ID, err)
 	if err != nil { return err }
 
 	ui.ImageID = imageID
-	db.UpdateUserInfo(&ui)
+	if err := db.UpdateUserInfo(&ui); err != nil{
+		return c.JSON(http.StatusInternalServerError, err)
+	}
+
 	var u models.User
-	db.GetUser(&u, id)
+	if err := db.GetUser(&u, id); err != nil{
+		return c.JSON(http.StatusInternalServerError, err)
+	}
+
 	u.UserInfoID = ui.ID
-	db.UpdateUser(&u)
+	if err := db.UpdateUser(&u); err != nil{
+		return c.JSON(http.StatusInternalServerError, err)
+	}
 
 	return c.JSON(http.StatusOK, "create user infomation")
 }
@@ -104,7 +114,7 @@ func createImage(c echo.Context, userid int, err error) (error, int){	//TODO lin
 	}
 	defer src.Close()
 
-	saveDir := "../images"
+	saveDir := "./images/"
 	savePath := fmt.Sprintf("%s%s", saveDir, image.Filename)
 
 	if err := os.MkdirAll(saveDir, 0755); err != nil {
