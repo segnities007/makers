@@ -4,21 +4,18 @@ class User {
   final int id;
   final int userInfoID;
   final String email;
-  final String password;
 
   User({
     required this.id,
     required this.email,
-    required this.password,
     required this.userInfoID,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json["id"],
+      id: json["id"] as int,
       email: json["email"],
-      password: json["password"],
-      userInfoID: json["userInfoID"],
+      userInfoID: json["userInfoID"] ?? 0,
     );
   }
 }
@@ -55,11 +52,11 @@ class UserInfo {
       birthday: json["birthday"],
       github: json["github"],
       description: json["description"],
-      image: json["image"],
-      tags: json["tags"],
-      followIDs: json["followIDs"],
-      groupIDs: json["groupIDs"],
-      dmIDs: json["dmIDs"],
+      image: json["image"], //TODO ??
+      tags: json["tags"] ?? const <int>[],
+      followIDs: json["followIDs"] ?? const <int>[],
+      groupIDs: json["groupIDs"] ?? const <int>[],
+      dmIDs: json["dmIDs"] ?? const <int>[],
     );
   }
 }
@@ -101,8 +98,8 @@ class Group {
     return Group(
       id: json["id"],
       name: json["json"],
-      userIDs: json["userIDs"],
-      messageIDs: json["messageIDs"],
+      userIDs: json["userIDs"] ?? <int>[],
+      messageIDs: json["messageIDs"] ?? <int>[],
     );
   }
 }
@@ -145,21 +142,21 @@ class DirectMessage {
       id: json["id"],
       firstID: json["firstID"],
       secondID: json["secondID"],
-      messageIDs: json["messageIDs"],
+      messageIDs: json["messageIDs"] ?? <int>[],
     );
   }
 }
 
-class Tags {
-  final int id;
-  final int tagID;
-  final List<int> userIDs;
-  final List<int> groupIDs;
+// class Tags {
+//   final int id;
+//   final int tagID;
+//   final List<int> userIDs;
+//   final List<int> groupIDs;
 
-  Tags({
-    required this.id,
-    required this.tagID,
-    required this.userIDs,
-    required this.groupIDs,
-  });
-}
+//   Tags({
+//     required this.id,
+//     required this.tagID,
+//     required this.userIDs,
+//     required this.groupIDs,
+//   });
+// }

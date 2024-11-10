@@ -20,11 +20,11 @@ curl -X POST \
 | プロパティ          | 型         |
 |-------------------|------------|
 | name              | String     |
-| birthday          | int?       |
+| birthday          | int        |
 | github            | String     |
 | description       | String     |
 | image             | Image?     |
-| preference        | String     |
+| tags              | List<int>  |
 | followIDs         | List<int>  |
 | groupIDs          | List<int>  |
 | DirectMessageIDs  | List<int>  |
