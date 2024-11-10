@@ -39,7 +39,7 @@ type UserInfo struct {
 	Birthday         int     `json:"birthday"`
 	Github           string   `json:"github"`
 	Description      string   `json:"description"`
-	ImageID          int     `json:"imageid" gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	ImageID          int     `json:"imageid"`
 	FollowIDs        IntArray `gorm:"serializer:json" json:"followids"`
 	GroupIDs         IntArray `gorm:"serializer:json" json:"groupids"`
 	DirectMessageIDs IntArray `gorm:"serializer:json" json:"directmessageids"`

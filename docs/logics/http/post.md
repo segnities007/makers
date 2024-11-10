@@ -2,12 +2,20 @@
 
 ## /user
 
+curl -X POST "http://localhost:1323/user?email=email&password=password" | jq .
+
+
 | プロパティ          | 型         |
 |-------------------|------------|
 | email             | String     |
 | password          | String     |
 
 ## /userinfo
+
+curl -X POST \
+  'http://localhost:1323/userinfo?id=1&name=name&birthday=10101010&github=url&description=desc' \
+  -F "image=@/home/segnities007/Pictures/image/segnities007.png" | jq .
+
 
 | プロパティ          | 型         |
 |-------------------|------------|

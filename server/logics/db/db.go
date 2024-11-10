@@ -160,8 +160,8 @@ func CreateImage(image *models.Image)error{
     return nil
 }
 
-func GetImage(image *models.Image)error{
-	r := DB.First(&image)
+func GetImage(image *models.Image, id int)error{
+	r := DB.First(&image, id)
 
 	if r.Error != nil {
       log.Printf("Error in getImage (server/logics/db/db.go): %v\n", r.Error)
