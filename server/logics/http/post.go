@@ -25,8 +25,8 @@ func POSTs(e *echo.Echo){
 var cpath string = "server/logics/http/post.go"
 
 func createUser(c echo.Context)error{
-	email := c.QueryParam("email")
-	password := c.QueryParam("password")
+	email := c.FormValue("email")
+	password := c.FormValue("password")
 	user := models.User{Email: email, Password: password}
 
 	db.CreateUser(&user)
@@ -37,7 +37,7 @@ func createUser(c echo.Context)error{
 ///////
 
 func createUserInfo(c echo.Context)error{ //TODO modify line value
-	id, err := strconv.Atoi(c.QueryParam("id"))
+	id, err := strconv.Atoi(c.FormValue("id"))
 
 	if err != nil {
 		line := 45
@@ -45,8 +45,8 @@ func createUserInfo(c echo.Context)error{ //TODO modify line value
 		return c.JSON(http.StatusInternalServerError, message)
 	}
 
-	name := c.QueryParam("name")
-	birthday, err := strconv.Atoi(c.QueryParam("birthday"))
+	name := c.FormValue("name")
+	birthday, err := strconv.Atoi(c.FormValue("birthday"))
 
 	if err != nil {
 		line := 45
@@ -54,8 +54,8 @@ func createUserInfo(c echo.Context)error{ //TODO modify line value
 		return c.JSON(http.StatusInternalServerError, message)
 	}
 
-	github := c.QueryParam("github")
-	description := c.QueryParam("description")
+	github := c.FormValue("github")
+	description := c.FormValue("description")
 
 	ui := models.UserInfo{//imageid followids tagids groupids
 		Name: name,
@@ -150,9 +150,9 @@ func createImage(c echo.Context, userid int, err error) (error, int){	//TODO lin
 ///////
 
 func createGroup(c echo.Context)error{
-	// name := c.QueryParam("name")
-	// userIDs := c.QueryParam("userIDs")
-	// messageIDs := c.QueryParam("messageIDs")
+	// name := c.FormValue("name")
+	// userIDs := c.FormValue("userIDs")
+	// messageIDs := c.FormValue("messageIDs")
 	return nil
 	//TODO
 }
@@ -160,8 +160,8 @@ func createGroup(c echo.Context)error{
 ///////
 
 func createMessage(c echo.Context)error{
-	// userID := c.QueryParam("userID")
-	// message := c.QueryParam("message")
+	// userID := c.FormValue("userID")
+	// message := c.FormValue("message")
 	return nil
 	//TODO
 }
@@ -169,9 +169,9 @@ func createMessage(c echo.Context)error{
 ///////
 
 func createDirectMessage(c echo.Context)error{
-	// firstID := c.QueryParam("firstID")
-	// secondID := c.QueryParam("secondID")
-	// messageIDs := c.QueryParam("messageIDs")
+	// firstID := c.FormValue("firstID")
+	// secondID := c.FormValue("secondID")
+	// messageIDs := c.FormValue("messageIDs")
 	return nil
 	//TODO
 }
@@ -179,7 +179,7 @@ func createDirectMessage(c echo.Context)error{
 ///////
 
 func createTag(c echo.Context)error{
-	// name := c.QueryParam("name")
+	// name := c.FormValue("name")
 	return nil
 	//TODO
 }
