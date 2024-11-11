@@ -14,7 +14,7 @@ import (
 var gpath string = "server/logics/http/get.go"
 
 func GETs(e *echo.Echo){
-	e.GET("/user", getUser)
+	e.GET("/user/:id", getUser)
 	e.GET("/userinfo", getUserInfo)
 	e.GET("/group", getGroup)
 	e.GET("/image", getImage)
@@ -24,7 +24,7 @@ func GETs(e *echo.Echo){
 }
 
 func getUser(c echo.Context)error{
-	id, err := strconv.Atoi(c.QueryParam("id"))
+	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil{
 		line := 0
 		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
@@ -38,7 +38,7 @@ func getUser(c echo.Context)error{
 }
 
 func getUserInfo(c echo.Context)error{
-	id, err := strconv.Atoi(c.QueryParam("id"))
+	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil{
 		line := 0
 		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
@@ -52,7 +52,7 @@ func getUserInfo(c echo.Context)error{
 }
 
 func getImage(c echo.Context)error{
-	id, err := strconv.Atoi(c.QueryParam("id"))
+	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil{
 		line := 0
 		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
