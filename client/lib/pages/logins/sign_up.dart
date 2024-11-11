@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../commons/input_form.dart';
 import '../commons/button.dart';
 import '../../logics/http/post.dart';
-import '../../models/models.dart' as model;
+import '../../logics/db/provider.dart';
 
-class SignUp extends HookWidget {
+class SignUp extends HookConsumerWidget {
   SignUp({super.key});
 
   final List<String> labels = ["Email", "Password"];
@@ -22,14 +22,11 @@ class SignUp extends HookWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    final user = useState<model.User?>(null);
+  Widget build(context, ref) {
+    final user = ref.watch(userProvider.notifier);
 
     return Center(
         child: Column(children: [
-      (user.value != null)
-          ? Text("${user.value!.id} ${user.value!.email}")
-          : const Text("null"),
       MakerInputForm(
           padding: 64,
           labels: labels,
@@ -39,15 +36,15 @@ class SignUp extends HookWidget {
           label: "create",
           handler: () async {
             try {
-              user.value = await postUser(
+              ref.read(userProvider.notifier).state = await postUser(
                 email: controllers[0].text,
                 password: controllers[1].text,
               );
 
               final spre = SharedPreferencesAsync();
-              await spre.setInt("userid", user.value!.id);
+              await spre.setInt("userid", user.state!.id);
 
-              WidgetsBinding.instance.addPostFrameCallback((_) {
+              WidgetsBinding.instance.addPostFrameCallback((_) async {
                 context.go("/hubs");
               });
             } catch (e) {

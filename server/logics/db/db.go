@@ -44,8 +44,9 @@ func UpdateUser(u *models.User)error{
 	return nil
 }
 
-func DeleteUser(u *models.User)error{
-	r := DB.Delete(u)
+func DeleteUser(id int)error{
+	var u models.User
+	r := DB.Delete(&u, id)
 
 	if r.Error != nil {
 		log.Printf("Error in deleteUser (server/logics/db/db.go): %v\n", r.Error)
@@ -90,7 +91,8 @@ func UpdateGroup(g *models.Group)error{
     return nil
 }
 
-func DeleteGroup(g *models.Group)error{
+func DeleteGroup(id int)error{
+	var g models.Group
 	r := DB.Delete(&g)
 
     if r.Error != nil {
@@ -136,7 +138,11 @@ func UpdateUserInfo(ui *models.UserInfo)error{
     return nil
 }
 
-func DeleteUserInfo(ui *models.UserInfo)error{
+func DeleteUserInfo(id int)error{
+	var ui models.UserInfo
+	if id == 0 {
+		return nil
+	}
 	r := DB.Delete(&ui)
 
 	if r.Error != nil {
@@ -182,7 +188,8 @@ func UpdateImage(image *models.Image)error{
     return nil
 }
 
-func DeleteImage(image *models.Image)error{
+func DeleteImage(id int)error{
+	var image models.Image
 	r := DB.Delete(&image)
 
 	if r.Error != nil {
@@ -228,7 +235,8 @@ func UpdateMessage(m *models.Message)error{
     return nil
 }
 
-func DeleteMessage(m *models.Message)error{
+func DeleteMessage(id int)error{
+	var m models.Message
 	r := DB.Delete(&m)
 
 	if r.Error != nil {
@@ -273,7 +281,8 @@ func UpdateDM(dm *models.DirectMessage)error{
   return nil
 }
 
-func DeleteDM(dm *models.DirectMessage)error{
+func DeleteDM(id int)error{
+	var dm models.DirectMessage
 	r := DB.Delete(&dm)
 
 	if r.Error != nil {
@@ -319,7 +328,8 @@ func UpdateTag(t *models.Tag)error{
   return nil
 }
 
-func DeleteTag(t *models.Tag)error{
+func DeleteTag(id int)error{
+	var t models.Tag
 	r := DB.Delete(&t)
 
 	if r.Error != nil {
