@@ -14,7 +14,8 @@ import (
 var gpath string = "server/logics/http/get.go"
 
 func GETs(e *echo.Echo){
-	e.GET("/user/:id", getUser)
+	e.GET("/user", getUserWithEP);
+	e.GET("/user/:id", getUserWithI)
 	e.GET("/userinfo", getUserInfo)
 	e.GET("/group", getGroup)
 	e.GET("/image", getImage)
@@ -23,7 +24,7 @@ func GETs(e *echo.Echo){
 	e.GET("/tag", getTag)
 }
 
-func getUser(c echo.Context)error{
+func getUserWithI(c echo.Context)error{
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil{
 		line := 0
@@ -33,6 +34,21 @@ func getUser(c echo.Context)error{
 
 	var u models.User
 	db.GetUser(&u, id)
+
+	return c.JSON(http.StatusOK, u)
+}
+
+func getUserWithEP(c echo.Context)error{
+	email := c.QueryParam("email")
+	password := c.QueryParam("password")
+
+	var u models.User
+	err := db.GetUserWithEP(&u, email, password)
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to getUserWithEP %s %d", gpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
 
 	return c.JSON(http.StatusOK, u)
 }

@@ -22,6 +22,16 @@ func CreateUser(u *models.User) error {
     return nil
 }
 
+func GetUserWithEP(u *models.User, e string, p string)error{
+	r := DB.Where("email = ? AND password = ?",e,p).First(&u)
+
+	if r.Error != nil{
+		return r.Error
+	}
+
+	return nil
+}
+
 func GetUser(u *models.User, id int)error{
 	r := DB.First(u, id)
 
