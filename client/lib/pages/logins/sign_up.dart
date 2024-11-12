@@ -33,7 +33,7 @@ class SignUp extends HookConsumerWidget {
           validators: validators,
           controllers: controllers),
       MakerButton(
-          label: "create",
+          label: "Up",
           handler: () async {
             try {
               ref.read(userProvider.notifier).state = await postUser(
@@ -41,8 +41,7 @@ class SignUp extends HookConsumerWidget {
                 password: controllers[1].text,
               );
 
-              final spre = SharedPreferencesAsync();
-              await spre.setInt("userid", user.state!.id);
+              await SharedPreferencesAsync().setInt("userid", user.state!.id);
 
               WidgetsBinding.instance.addPostFrameCallback((_) async {
                 context.go("/hubs");

@@ -16,5 +16,24 @@ Future<model.User> getUser({
   } else {
     throw Exception("Failed to getUser");
   }
+}
 
+Future<model.User> getUserWithEP({
+  required final String email,
+  required final String password,
+}) async {
+  final url = Uri.parse("${dotenv.env["API_URL"]}/user").replace(
+    queryParameters: {
+      "email": email,
+      "password": password,
+    },
+  );
+
+  final res = await http.get(url);
+
+  if (res.statusCode == 200) {
+    return model.User.fromJson(jsonDecode(res.body));
+  } else {
+    throw Exception("Failed to getUser");
+  }
 }

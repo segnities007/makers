@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../commons/card.dart';
-import '../../../logics/http/delete.dart';
+// import '../../../logics/http/delete.dart';
 import '../../../logics/db/provider.dart';
 
 class Profile extends HookConsumerWidget {
@@ -28,13 +28,13 @@ class Profile extends HookConsumerWidget {
       () async {
         final spre = SharedPreferencesAsync();
         await spre.remove("userid");
-        final flag =
-            await deleteUser(id: user.state!.id, uiid: user.state!.userInfoID);
+        // final flag =
+        //     await deleteUser(id: user.state!.id, uiid: user.state!.userInfoID);
         ref.read(userProvider.notifier).state = null;
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (flag) {
+          // if (flag) {
             context.go("/logins");
-          }
+          // }
         });
       }
     ];
@@ -47,7 +47,7 @@ class Profile extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           MakerCard(
-              iconSize: 128,
+              iconSize: 120,
               label:
                   "${user.state!.email} ${user.state!.id} ${user.state!.userInfoID}",
               description: "description"),
