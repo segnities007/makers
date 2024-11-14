@@ -24,7 +24,7 @@ func GETs(e *echo.Echo){
 	e.GET("/tag", getTag)
 }
 
-func getUserWithI(c echo.Context)error{
+func getUserWithI(c echo.Context)error{//modify error handler
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil{
 		line := 0
@@ -38,7 +38,7 @@ func getUserWithI(c echo.Context)error{
 	return c.JSON(http.StatusOK, u)
 }
 
-func getUserWithEP(c echo.Context)error{
+func getUserWithEP(c echo.Context)error{//modify error handler
 	email := c.QueryParam("email")
 	password := c.QueryParam("password")
 
@@ -53,7 +53,7 @@ func getUserWithEP(c echo.Context)error{
 	return c.JSON(http.StatusOK, u)
 }
 
-func getUserInfo(c echo.Context)error{
+func getUserInfo(c echo.Context)error{//modify error handler
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil{
 		line := 0
@@ -67,7 +67,7 @@ func getUserInfo(c echo.Context)error{
 	return c.JSON(http.StatusOK, ui)
 }
 
-func getImage(c echo.Context)error{
+func getImage(c echo.Context)error{//modify error handler
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil{
 		line := 0
@@ -86,25 +86,45 @@ func getImage(c echo.Context)error{
 }
 
 func getGroup(c echo.Context)error{
-
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
 	return nil
 	//TODO
 }
 
 func getMessage(c echo.Context)error{
-
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
 	return nil
 	//TODO
 }
 
 func getDirectMessage(c echo.Context)error{
-
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
 	return nil
 	//TODO
 }
 
 func getTag(c echo.Context)error{
-
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
 	return nil
 	//TODO
 }
