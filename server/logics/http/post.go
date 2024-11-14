@@ -149,31 +149,100 @@ func createImage(c echo.Context, userid int, err error) (error, int){	//TODO lin
 
 ///////
 
-func createGroup(c echo.Context)error{
-	// name := c.FormValue("name")
-	// userIDs := c.FormValue("userIDs")
-	// messageIDs := c.FormValue("messageIDs")
-	return nil
-	//TODO
+func createGroup(c echo.Context)error{//TODO modify error handler
+	name := c.FormValue("name")
+
+	userIDs, err := models.ParseIntSlice(c.FormValue("userids"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to create file %s %d", cpath, line)
+		return c.JSON(http.StatusBadRequest, message)
+	}
+
+	messageIDs, err := models.ParseIntSlice(c.FormValue("messageIDs"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to create file %s %d", cpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	g := models.Group{
+		Name: name,
+		UserIDs: userIDs,
+		MessageIDs: messageIDs,
+	}
+
+	if err := db.CreateGroup(&g); err != nil {
+		line := 0
+		message := fmt.Sprintf("failed to create file %s %d", cpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	return c.JSON(http.StatusOK, g)
 }
 
 ///////
 
-func createMessage(c echo.Context)error{
-	// userID := c.FormValue("userID")
-	// message := c.FormValue("message")
-	return nil
-	//TODO
+func createMessage(c echo.Context)error{//modify err handler
+	userID, err := strconv.Atoi(c.FormValue("userID"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to create file %s %d", cpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	message := c.FormValue("message")
+
+	m := models.Message{
+		UserID: userID,
+		Message: message,
+	}
+
+	if err := db.CreateMessage(&m); err != nil {
+		line := 0
+		message := fmt.Sprintf("failed to create file %s %d", cpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+	return c.JSON(http.StatusOK, m)
 }
 
 ///////
 
 func createDirectMessage(c echo.Context)error{
-	// firstID := c.FormValue("firstID")
-	// secondID := c.FormValue("secondID")
-	// messageIDs := c.FormValue("messageIDs")
-	return nil
-	//TODO
+	firstID, err := strconv.Atoi(c.FormValue("firstID"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to create file %s %d", cpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	secondID, err := strconv.Atoi(c.FormValue("secondID"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to create file %s %d", cpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	messageIDs, err := models.ParseIntSlice(c.FormValue("messageIDs"))
+	if err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to create file %s %d", cpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	dm := models.DirectMessage{
+		FirstID: firstID,
+		SecondID: secondID,
+		MessageIDs: messageIDs,
+	}
+
+	if err := db.CreateDM(&dm); err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to create file %s %d", cpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	return c.JSON(http.StatusOK, dm)
 }
 
 ///////
