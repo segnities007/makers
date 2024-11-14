@@ -92,8 +92,15 @@ func getGroup(c echo.Context)error{
 		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
 		return c.JSON(http.StatusInternalServerError, message)
 	}
-	return nil
-	//TODO
+
+	var g models.Group
+	if err := db.GetGroup(&g, id); err != nil {
+		line := 0
+		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	return c.JSON(http.StatusOK, g)
 }
 
 func getMessage(c echo.Context)error{
@@ -103,8 +110,15 @@ func getMessage(c echo.Context)error{
 		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
 		return c.JSON(http.StatusInternalServerError, message)
 	}
-	return nil
-	//TODO
+
+	var m models.Message
+	if err := db.GetMessage(&m, id); err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	return c.JSON(http.StatusOK, m)
 }
 
 func getDirectMessage(c echo.Context)error{
@@ -114,8 +128,15 @@ func getDirectMessage(c echo.Context)error{
 		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
 		return c.JSON(http.StatusInternalServerError, message)
 	}
-	return nil
-	//TODO
+
+	var dm models.DirectMessage
+	if err := db.GetDM(&dm, id); err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	return c.JSON(http.StatusOK, dm)
 }
 
 func getTag(c echo.Context)error{
@@ -125,6 +146,13 @@ func getTag(c echo.Context)error{
 		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
 		return c.JSON(http.StatusInternalServerError, message)
 	}
-	return nil
-	//TODO
+
+	var t models.Tag
+	if err := db.GetTag(&t, id); err != nil{
+		line := 0
+		message := fmt.Sprintf("failed to convert %s %d", gpath, line)
+		return c.JSON(http.StatusInternalServerError, message)
+	}
+
+	return c.JSON(http.StatusOK, t)
 }
