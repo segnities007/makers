@@ -17,7 +17,7 @@ func GetUserWithEP(u *models.User, e string, p string)error{
 }
 
 func GetUser(u *models.User, id int)error{
-	r := DB.First(u, id)
+	r := DB.First(&u, id)
 
 	if r.Error != nil {
 		log.Printf("Error in getUser (server/logics/db/db.go): %v\n", r.Error)
@@ -27,8 +27,8 @@ func GetUser(u *models.User, id int)error{
 	return nil
 }
 
-func GetGroup(g *models.Group)error{
-	r := DB.First(&g)
+func GetGroup(g *models.Group, id int)error{
+	r := DB.First(&g, id)
 
     if r.Error != nil {
       log.Printf("Error in getGroup (server/logics/db/db.go): %v\n", r.Error)
@@ -60,8 +60,8 @@ func GetImage(image *models.Image, id int)error{
     return nil
 }
 
-func GetMessage(m *models.Message)error{
-	r := DB.First(&m)
+func GetMessage(m *models.Message, id int)error{
+	r := DB.First(&m, id)
 
 	if r.Error != nil {
       log.Printf("Error in getMessage (server/logics/db/db.go): %v\n", r.Error)
@@ -71,8 +71,8 @@ func GetMessage(m *models.Message)error{
     return nil
 }
 
-func GetDM(dm *models.DirectMessage)error{
-	r := DB.First(&dm)
+func GetDM(dm *models.DirectMessage, id int)error{
+	r := DB.First(&dm, id)
 
 	if r.Error != nil {
       log.Printf("Error in getDM (server/logics/db/db.go): %v\n", r.Error)
@@ -82,8 +82,8 @@ func GetDM(dm *models.DirectMessage)error{
   return nil
 }
 
-func GetTag(t *models.Tag)error{
-	r := DB.First(&t)
+func GetTag(t *models.Tag, id int)error{
+	r := DB.First(&t, id)
 
 	if r.Error != nil {
       log.Printf("Error in getTag (server/logics/db/db.go): %v\n", r.Error)
