@@ -68,7 +68,7 @@ func createUserInfo(c echo.Context)error{ //TODO modify line value
 		return c.JSON(http.StatusInternalServerError, err)
 	}
 
-	err, imageID := createImage(c, ui.ID, err)
+	err, imageID := createImage(c, ui.ID)
 	if err != nil { return err }
 
 	ui.ImageID = imageID
@@ -91,13 +91,7 @@ func createUserInfo(c echo.Context)error{ //TODO modify line value
 
 ///////
 
-func createImage(c echo.Context, userid int, err error) (error, int){	//TODO lineの修正
-
-	if err != nil {
-		line := 55
-		message := fmt.Sprintf("failed to convert %s %d", cpath, line)
-		return c.JSON(http.StatusInternalServerError, message), 0
-	}
+func createImage(c echo.Context, userid int) (error, int){	//TODO lineの修正
 
 	image, err :=c.FormFile("image")
 	if err != nil{
